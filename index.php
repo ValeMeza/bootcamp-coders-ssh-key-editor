@@ -18,18 +18,19 @@
         <li>Will be able to copy past/delete SSH-Keys into bootcamp-coders.cnm.edu</li>
     </ul>
         <h2>Use Case</h2>
-        Malente has just spent 30 min to an hour watching and rewatching SSH-key edioter for his bootcamp coders class. After pasting a SSH key he realized he realized he entered the wrong number of bits for his SSH-key. Luckily the universal symbole for delete is located right next to his previous SSH-key. He deletes and adds his new SSH-key.
+        Malente has just spent 30 min to an hour watching and rewatching SSH-key edioter for his bootcamp coders class. After pasting a SSH key he realized he entered the wrong number of bits for his SSH-key. Luckily the universal symbole for delete is located right next to his previous SSH-key. He deletes and adds his new SSH-key.
         <h2>Example Flow</h2>
-        <ul>
+        <ol>
             <li>Opens boot-coders.cnm.edu/prework.</li>
             <li>Server fetches information.</li>
-            <li>Hits SSH-key editor and page asked for log in.</li>
+            <li>Hits SSH-key editor and page askes for log in.</li>
             <li>Page reloads and displays Add SSH key and incorrect SSH-key is displayed.</li>
             <li>Malente hits delete and pastes new SSH-key. </li>
             <li>Server deletes and adds new SSH-key.</li>
             <li>Malente sees the SSH-key added display.</li>
-        </ul>
+        </ol>
     <h2>Conceptual Model</h2>
+    <h3>Entities & Attributes</h3>
     <ul>
         <li></li>
     </ul>
