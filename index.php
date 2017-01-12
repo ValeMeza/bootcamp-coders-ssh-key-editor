@@ -45,15 +45,18 @@
         <li>ssh-keyDate</li>
     </ul>
     SSH-keys
+    <ul>
     <li>ssh-keysProfileId(foreign key</li>
     <li>ssh-keysProfileId(foreign key)</li>
     <li>ssh-keysFingerprintId</li>
     <li>ssh-keysDate</li>
+    </ul>
     <h2>Relations</h2>
-
-
-
-
-</main>
-</body>
+    <ul>
+        <li>One profile per log in. (1 to 1 </li>
+        <li>One Profile can upload many ssh-keys (1 to n)</li>
+        <li>SSH-keys can be added and deleted (n to m)</li>
+    </ul>
+        </main>
+    </body>
 </html>
