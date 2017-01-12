@@ -40,13 +40,13 @@
     SSH-key
     <ul>
         <li>ssh-keyId(primary key)</li>
-        <li>ssh-keyProfileId</li>
+        <li>ssh-keyProfileId(foreign key)</li>
         <li>ssh-keyContent</li>
         <li>ssh-keyDate</li>
     </ul>
     SSH-keys
     <ul>
-    <li>ssh-keysProfileId(foreign key</li>
+    <li>ssh-keysProfileId(foreign key)</li>
     <li>ssh-keysProfileId(foreign key)</li>
     <li>ssh-keysFingerprintId</li>
     <li>ssh-keysDate</li>
