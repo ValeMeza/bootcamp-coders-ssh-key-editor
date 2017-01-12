@@ -53,7 +53,7 @@
     </ul>
     <h2>Relations</h2>
     <ul>
-        <li>One profile per log in. (1 to 1) </li>
+        <li>One log in per profile. (1 to 1) </li>
         <li>One Profile can upload many ssh-keys (1 to n)</li>
         <li>SSH-keys can be added and deleted (n to m)</li>
     </ul>
