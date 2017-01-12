@@ -1,7 +1,13 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Valente Meza
- * Date: 1/11/2017
- * Time: 11:55 PM
- */
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8"
+    </head>
+    <title>SSH Key-Editor</title>
+    <header>
+        SSH-Key User
+    </header>
+<body>
+<main></main>
+</body>
+</html>
