@@ -30,7 +30,7 @@
             <li>Malente sees the SSH-key added display.</li>
         </ol>
     <h2>Conceptual Model</h2>
-    <h3>Entities & Attributes</h3>
+    <h3>Entities &amp; Attributes</h3>
     Profile
     <ul>
         <li>profileId (primary key)</li>
@@ -53,7 +53,7 @@
     </ul>
     <h2>Relations</h2>
     <ul>
-        <li>One profile per log in. (1 to 1 </li>
+        <li>One profile per log in. (1 to 1) </li>
         <li>One Profile can upload many ssh-keys (1 to n)</li>
         <li>SSH-keys can be added and deleted (n to m)</li>
     </ul>
