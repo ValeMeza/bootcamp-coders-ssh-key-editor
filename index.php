@@ -31,9 +31,27 @@
         </ol>
     <h2>Conceptual Model</h2>
     <h3>Entities & Attributes</h3>
+    Profile
     <ul>
-        <li></li>
+        <li>profileId (primary key)</li>
+        <li>profileAtHandle</li>
+        <li>profileEmail</li>
     </ul>
+    SSH-key
+    <ul>
+        <li>ssh-keyId(primary key)</li>
+        <li>ssh-keyProfileId</li>
+        <li>ssh-keyContent</li>
+        <li>ssh-keyDate</li>
+    </ul>
+    SSH-keys
+    <li>ssh-keysProfileId(foreign key</li>
+    <li>ssh-keysProfileId(foreign key)</li>
+    <li>ssh-keysFingerprintId</li>
+    <li>ssh-keysDate</li>
+    <h2>Relations</h2>
+
+
 
 
 </main>
