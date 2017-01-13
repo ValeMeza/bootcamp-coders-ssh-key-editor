@@ -36,6 +36,8 @@
         <li>profileId (primary key)</li>
         <li>profileAtHandle</li>
         <li>profileEmail</li>
+        <li>profileHash</li>
+        <li>profileSalt</li>
     </ul>
     SSH-key
     <ul>
@@ -53,9 +55,7 @@
     </ul>
     <h2>Relations</h2>
     <ul>
-        <li>One log in per profile. (1 to 1) </li>
         <li>One Profile can upload many ssh-keys (1 to n)</li>
-        <li>SSH-keys can be added and deleted (n to m)</li>
     </ul>
         </main>
     </body>
