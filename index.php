@@ -49,8 +49,7 @@
     SSH-keys
     <ul>
     <li>ssh-keysProfileId(foreign key)</li>
-    <li>ssh-keysProfileId(foreign key)</li>
-    <li>ssh-keysFingerprintId</li>
+    <li>ssh-keysFingerprintId(foreign key)</li>
     <li>ssh-keysDate</li>
     </ul>
     <h2>Relations</h2>
