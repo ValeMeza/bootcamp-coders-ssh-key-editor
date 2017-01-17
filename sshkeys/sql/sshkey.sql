@@ -1,28 +1,20 @@
-DROP TABLE IF EXISTS `sshkeys`;
 DROP TABLE IF EXISTS sshkey;
 DROP TABLE IF EXISTS profile;
 CREATE TABLE profile (
-  profileID INT UNSIGNED AUTO_INCREMENT NOT NULL,
-  profileAtHandle VARCHAR(32) NOT NULL,
+  profileId INT UNSIGNED AUTO_INCREMENT NOT NULL,
   profileEmail VARCHAR(128) NOT NULL,
-UNIQUE(profileEmail),
-UNIQUE(profileAtHandle),
-PRIMARY KEY(profileID)
+  profilePasswordHash CHAR (128),
+  profileSalt CHAR(64),
+  UNIQUE(profileEmail),
+  PRIMARY KEY(profileId)
 );
 CREATE TABLE sshkey (
   sshkeyId INT UNSIGNED AUTO_INCREMENT NOT NULL,
   sshkeyProfileId INT UNSIGNED NOT NULL,
-  sshkeyContent CHAR NOT NULL,
-  sshkeyDate DATETIME NOT NULL,
+  sshkeyContent INT UNSIGNED NOT NULL,
+  -- you added CHAR because all the sshkeyContent has the same byts
+  sshkeyDate INT UNSIGNED NOT NULL,
   INDEX(sshkeyProfileId),
   FOREIGN KEY(sshkeyProfileId) REFERENCES profile(profileId),
   PRIMARY KEY(sshkeyId)
-);
-CREATE TABLE `sshkeys` (
-  sshkeysProfileId INT UNSIGNED NOT NULL,
-  sshkeysFingerprintId INT UNSIGNED NOT NULL,
-  INDEX(sshkeysProfileId),
-  INDEX(sshkeysFingerprintID),
-  FOREIGN KEY(sshkeysProfileID) REFERENCES profile(profileId),
-  PRIMARY KEY(sshkeysProfileId, sshkeysFingerprintId)
 );

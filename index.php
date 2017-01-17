@@ -33,29 +33,28 @@
     <h3>Entities &amp; Attributes</h3>
     Profile
     <ul>
-        <li>profileId (primary key)</li>
-        <li>profileAtHandle</li>
+        <li>profileId(primary key)</li>
         <li>profileEmail</li>
         <li>profileHash</li>
         <li>profileSalt</li>
     </ul>
-    SSH-key
+    sshkey
     <ul>
-        <li>ssh-keyId(primary key)</li>
-        <li>ssh-keyProfileId(foreign key)</li>
-        <li>ssh-keyContent</li>
-        <li>ssh-keyDate</li>
-    </ul>
-    SSH-keys
-    <ul>
-    <li>ssh-keysProfileId(foreign key)</li>
-    <li>ssh-keysFingerprintId(foreign key)</li>
-    <li>ssh-keysDate</li>
+        <li>sshkeyId(primary key)</li>
+        <li>sshkeyProfileId(foreign key)</li>
+        <li>sshkeyContent</li>
+        <li>sshkeyDate</li>
+        <li>sshkeyFingerprintId</li>
+        <li>sshkeyComment</li>
+        <li>sshkeyBits</li>
+        <li>sshkeyAlgorithm</li>
+        <li>sshkeyVersion</li>
     </ul>
     <h2>Relations</h2>
     <ul>
         <li>One Profile can upload many ssh-keys (1 to n)</li>
     </ul>
+    <img src="images/ssh-key-erd%20(1)%20(4).svg" alt="ssh-key-erd(1)(4)">
         </main>
     </body>
 </html>
