@@ -42,12 +42,12 @@
     <ul>
         <li>sshkeyId(primary key)</li>
         <li>sshkeyProfileId(foreign key)</li>
+        <li>sshkeyAlgorithml</li>
+        <li>sshkeyBits</li>
+        <li>sshkeyComment</li>
         <li>sshkeyContent</li>
         <li>sshkeyDate</li>
         <li>sshkeyFingerprintId</li>
-        <li>sshkeyComment</li>
-        <li>sshkeyBits</li>
-        <li>sshkeyAlgorithm</li>
         <li>sshkeyVersion</li>
     </ul>
     <h2>Relations</h2>
