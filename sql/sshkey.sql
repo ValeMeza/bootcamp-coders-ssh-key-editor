@@ -11,10 +11,15 @@ CREATE TABLE profile (
 CREATE TABLE sshkey (
   sshkeyId INT UNSIGNED AUTO_INCREMENT NOT NULL,
   sshkeyProfileId INT UNSIGNED NOT NULL,
-  sshkeyContent INT UNSIGNED NOT NULL,
-  -- you added CHAR because all the sshkeyContent has the same byts
-  sshkeyDate INT UNSIGNED NOT NULL,
-  INDEX(sshkeyProfileId),
+  sshkeyAlgorithm CHAR(64),
+  sshkeyBits CHAR(4),
+  sshkeyComment CHAR(22),
+  sshkeyContent CHAR(44),
+  -- ask about CHAR!!
+  sshkeyDate TIMESTAMP,
+  sshkeyFingerprint INT UNSIGNED NOT NULL,
+  sshkeyVersion INT UNSIGNED NOT NULL,
+  INDEX(sshkeyProfileId, sshkeyBits, sshkeyComment, sshkeyContent),
   FOREIGN KEY(sshkeyProfileId) REFERENCES profile(profileId),
   PRIMARY KEY(sshkeyId)
 );
