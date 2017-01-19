@@ -45,24 +45,47 @@ class Profile //implements |JsonSerializable
      * @throws \ TypeError if data types violate type hints
      * @throws \ Exception if some other exception occurs
      **/
-    public function _construct(int $newProfileId = null, string $newProfileEmail, string $newProfileHash, string $newProfileSalt) {
+    public function _construct(int $newProfileId = null, string $newProfileEmail, string $newProfileHash, string $newProfileSalt)
+    {
         try {
             $this->setProfileId($newProfileId);
             $this->setProfileEmail($newProfileEmail);
             $this->setProfileSalt($newProfileSalt);
             $this->setProfileHash($newProfileHash);
-        } catch(\InvalidArgumentException $invalidArgument) {
+        } catch (\InvalidArgumentException $invalidArgument) {
             //** rethrow the exception to the caller */
-            throw(new\InvalidArgumentException($invalidArgument->getMessage(), 0 ,$invalidArgument));
-        } catch(\RangeException $range) {
+            throw(new\InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
+        } catch (\RangeException $range) {
             //** rethrow the exception to the caller**//
-            throw(new\RangeException($range->getMessage(), 0 ,$range));
-        } catch(\TypeError $typeError){
+            throw(new\RangeException($range->getMessage(), 0, $range));
+        } catch (\TypeError $typeError) {
             //**rethrow the exception to the caller**//
-            throw(new\TypeError($typeError->getMessage(), 0 ,$typeError));
-        } catch(\Exception $exception){
-            throw(new\Exception($exception->getMessage(), 0 ,$exception));
+            throw(new\TypeError($typeError->getMessage(), 0, $typeError));
+        } catch (\Exception $exception) {
+            throw(new\Exception($exception->getMessage(), 0, $exception));
         }
     }
-    /**  */
+    /** accessor method for profileId
+     *@return int value of profile id**/
+    /**
+     * @return int
+     */
+    public function getProfileId(){
+        return ($this->profileId);
+    }
+    /**
+     * mutator ethod for profile id
+     * @param int $newProfileId new value of profile id
+     * @throws\RangeException if $newProfielId is not an integer
+     **/
+    public function setProfileId(int
+    $newProfileId){
+        //**verify the profile id is positive**//
+        if($newProfileId <= 0) {
+            throw(new\RangeException("profile id is not positive"));
+        }
+        //** convert and store the profile id */
+        $this->profileId = $newProfileId;
+    }
+
 }
