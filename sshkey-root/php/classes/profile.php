@@ -65,6 +65,7 @@ class Profile //implements |JsonSerializable
             throw(new\Exception($exception->getMessage(), 0, $exception));
         }
     }
+
     /** accessor method for profileId
      *@return int value of profile id**/
     /**
@@ -72,6 +73,7 @@ class Profile //implements |JsonSerializable
      */
     public function getProfileId(){
         return ($this->profileId);
+
     }
     /**
      * mutator ethod for profile id
@@ -87,5 +89,30 @@ class Profile //implements |JsonSerializable
         //** convert and store the profile id */
         $this->profileId = $newProfileId;
     }
+    /**
+     * accessor method for Email content
+     * @return string value of Email content
+     **/
+    public function getprofileEmail()
+    {
+        return ($this->profileEmail);
+    }        /**
+         * mutator method for email content
+         * @param string $newProfileEmail
+         * @throws \InvalidArgumentException if $newProfileEmail is not a string or insecure
+         * @throws \TypeError if $newProfileEmail is not a string
+         */
+        public function setProfileEmail(string $newProfileEmail){
+            //** verify the email is secure */
+            $newProfileEmail = filter_var($newProfileEmail, FILTER_SANITIZE_EMAIL);
+            if(empty($newProfileEmail) === true){
+                throw(new \InvalidArgumentException("email content is empty or insecure"));
+
+            }
+
+        }
+
+
+
 
 }
