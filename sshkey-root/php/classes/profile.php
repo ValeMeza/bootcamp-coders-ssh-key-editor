@@ -67,41 +67,47 @@ class Profile //implements |JsonSerializable
     }
 
     /** accessor method for profileId
-     *@return int value of profile id**/
-    /**
-     * @return int
-     */
+     *@return int|null value of profile id
+     **/
+
     public function getProfileId(){
         return ($this->profileId);
 
     }
+
     /**
-     * mutator ethod for profile id
+     * mutator method for profile id
      * @param int $newProfileId new value of profile id
-     * @throws\RangeException if $newProfielId is not an integer
+     * @throws \RangeException if $newProfielId is not positive
+     * @throws \TypeError if $newProfileId is not an integer
      **/
-    public function setProfileId(int
-    $newProfileId){
-        //**verify the profile id is positive**//
-        if($newProfileId <= 0) {
-            throw(new\RangeException("profile id is not positive"));
+    public function setProfileId(int $newProfileId = null){
+        //*base case: if the profile id is null*//
+        if($newProfileId === null) {
+            $this->profileId = null;
+            return;
         }
-        //** convert and store the profile id */
+        //** verify the profile id is positive */
+        if($newProfileId <= 0){
+            throw(new \RangeException("profile is not positive"));
+            //**convert and store the profile id
+        }
         $this->profileId = $newProfileId;
     }
+
     /**
      * accessor method for Email content
      * @return string value of Email content
      **/
-    public function getprofileEmail()
-    {
+    public function getprofileEmail() {
         return ($this->profileEmail);
     }        /**
          * mutator method for email content
          * @param string $newProfileEmail
          * @throws \InvalidArgumentException if $newProfileEmail is not a string or insecure
          * @throws \TypeError if $newProfileEmail is not a string
-         */
+         * @throws \RangeException if $newProfileEmail is to long
+         **/
         public function setProfileEmail(string $newProfileEmail){
             //** verify the email is secure */
             $newProfileEmail = filter_var($newProfileEmail, FILTER_SANITIZE_EMAIL);
@@ -109,8 +115,72 @@ class Profile //implements |JsonSerializable
                 throw(new \InvalidArgumentException("email content is empty or insecure"));
 
             }
+            //** verify the email content will fit in the database **/
+            if(strlen($newProfileEmail)> 128) {
+                throw(new \RangeException("email to long"));
+            }
+            //**store the email content**/vmeza3@localhost
+            $this->profileEmail = $newProfileEmail;
 
         }
+
+        /**
+         * accessor  method for Hash
+         * @return string value of Hash content
+         **/
+        public function getProfileHash(){
+            return($this->profileHash);
+        }
+
+        /** mutator method for Hash content
+         * @param string $newprofileHash new value of Hash content
+         *@throws \InvalidArgumentException if $newProfileHash is insecure
+         *@throws \RangeException if $newProfileHash is > 128 characters
+         *@throws \TypeError if $newProfileHash is not a string
+         **/
+        public function setProfileHash(string $newprofileHash){
+            //** verify hash content is secure **/
+            $newprofileHash = trim($newprofileHash);
+            $newprofileHash = filter_var($newprofileHash, FILTER_SANITIZE_STRING);
+            if(empty($newprofileHash) === true ) {
+                throw(new \InvalidArgumentException("Hash content is empty or insecure"));
+            }
+            //** verify the Hash content will fit in the database **/
+            if(strlen($newprofileHash) > 128) {
+                throw(new \RangeException("Hash content to large"));
+            }
+            //** store Hash content **/
+            $this->profileHash = $newprofileHash;
+        }
+        /** accosser method for Salt
+         * @return string value of Salt content
+         **/
+        public function getProfileSalt(){
+            return($this->profileSalt);
+
+        }
+
+        /** mutator method for Salt content
+         * @param string $newProfileSalt new value for Salt
+         * @throws \InvalidArgumentException if new $newProfileSalt is insecure
+         * @throws \RangeException if $newProfileSalt is > 64 charecters
+         * @throws \TypeError if %newProfileSalt is not a string
+         **/
+        public function setProfileSalt(string $newProfileSalt){
+            //** verify Salt content is secure **/
+            $newProfileSalt = trim($newProfileSalt);
+            $newProfileSalt = filter_var($newProfileSalt, FILTER_SANITIZE_STRING);
+            if(empty($newProfileSalt) === true){
+                throw(new \InvalidArgumentException("Salt content is empty or insecure"));
+                //** verify salt content can fit in database **/
+                if(strlen($newProfileSalt) > 64) {
+                    throw(new\RangeException("Salt is to large"));
+                }
+                //** store Salt content **/
+                $this->ProfileSalt = $newProfileSalt;
+            }
+        }
+
 
 
 
