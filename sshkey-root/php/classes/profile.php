@@ -11,8 +11,9 @@ require_once("profile.php");
  * @author Valente Meza <vmeza3@cnm.edu>
  * @version 3.2.0*/
 
-class Profile implements\JsonSerializable {
-    use ValidateDate;
+class Profile //implements |JsonSerializable
+    //use ValidateDate;
+    {
     /**
      * id for this Profile; this is the primary key
      * @var int $profileId;
@@ -36,12 +37,22 @@ class Profile implements\JsonSerializable {
     /**
      * constructor for this Profile
      * @param int|null $newProfileId id of this profile or null if a new profile
-     * @param int $newProfileEmail id of the Profile
-     * @param string $newProfileId string containing actual proifle data
+     * @param string $newProfileEmail email of the Profile
+     * @param string $newProfileHash hash of the Profile
+     * @param string $newProfileSalt salt for the Profile
      * @throws \InvalidArgumentException if data types are not valid
      * @throws \RangeException if data values are out of bounds (to long, negative integers)
      * @throws \ TypeError if data types violate type hints
      * @throws \ Exception if some other exception occurs
-     */
+     **/
+    public function _construct(int $newProfileId = null, string $newProfileEmail, string $newProfileHash, string $newProfileSalt) {
+        try {
+            $this->setProfileId($newProfileId);
+            $this->setProfileEmail($newProfileEmail);
+            $this->setProfileSalt($newProfileSalt);
+            $this->setProfileHash($newProfileHash);
+        } catch(\InvalidArgumentException $invalidArgument) {
 
+        }
+    }
 }
