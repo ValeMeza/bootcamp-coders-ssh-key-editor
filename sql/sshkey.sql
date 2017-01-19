@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS profile;
 CREATE TABLE profile (
   profileId INT UNSIGNED AUTO_INCREMENT NOT NULL,
   profileEmail VARCHAR(128) NOT NULL,
-  profilePasswordHash CHAR (128),
+  profilePasswordHash CHAR (128) NULL,
   profileSalt CHAR(64) NOT NULL,
   UNIQUE(profileEmail),
   PRIMARY KEY(profileId)
