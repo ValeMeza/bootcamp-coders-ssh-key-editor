@@ -54,7 +54,7 @@
     <ul>
         <li>One Profile can upload many ssh-keys (1 to n)</li>
     </ul>
-    <img src="images/ssh-key-erd%20(1)%20(4).svg" alt="ssh-key-erd(1)(4)">
+    <img src="svg/ssh-key-erd%20(1)%20(4).svg" alt="ssh-key-erd(1)(4)">
         </main>
     </body>
 </html>

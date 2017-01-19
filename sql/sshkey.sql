@@ -17,9 +17,9 @@ CREATE TABLE sshkey (
   sshkeyContent CHAR(44),
   -- ask about CHAR!!
   sshkeyDate TIMESTAMP,
-  sshkeyFingerprint INT UNSIGNED NOT NULL,
+  sshkeyFingerprint VARCHAR(44),
   sshkeyVersion INT UNSIGNED NOT NULL,
-  INDEX(sshkeyProfileId, sshkeyBits, sshkeyComment, sshkeyContent),
+  INDEX(sshkeyProfileId, sshkeyBits, sshkeyComment, sshkeyContent, sshkeyFingerprint),
   FOREIGN KEY(sshkeyProfileId) REFERENCES profile(profileId),
   PRIMARY KEY(sshkeyId)
 );
