@@ -8,7 +8,7 @@
         <h1> SSH-Key User </h1>
     </header>
 <body>
-<main> <h2>Exaple User</h2>
+<main> <h2>Example User</h2>
     <ul>
         <li> Name: Malente Veza</li>
         <li>Age: 26</li>
