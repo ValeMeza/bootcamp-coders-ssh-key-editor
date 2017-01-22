@@ -194,4 +194,50 @@ class Profile //implements |JsonSerializable
         //** store Salt content **/
         $this->ProfileSalt = $newProfileSalt;
     }
+    /**
+     * inserts this profile into mySQL
+     *
+     * @param \PDO $pdo PDO connection object
+     * @throws \PDOException when mySQL related errors
+     * @throws \TypeError if $pdo is not a PDO connection object
+     */
+    public function insert(\PDO $pdo) {
+        //enfore the profileId is null (i.e, don't insert a profile that already exists)
+        if($this->profileId !==null) {
+            throw(new \PDOException("not a new profile"));
+        }
+
+        // create a query template
+        $query = "INSERT INTO profile(profileId, profileContent, profileEmail) VALUES( :profileId, :profileContent, :profileEmail)";
+        $statement = $pdo->prepare($query);
+        // bind the member variables to the place holders in the template
+        $parameters = ["profileId" => $this->profileId, "profileContent" => $this->profileContent, "profileEmail" => $this->profileEmail];
+        $statement->execute($parameters);
+
+        // update the null profileId with mySQL just gave us
+        $this->profileId = intval($pdo->lastInsertId());
+
+    }
+
+    /**
+     * deletes this profile from mySQl
+     *
+     * @param \PDO $pdo PDO connection object
+     * @throws \PDOException when mySQL related errors occur
+     * @throws \TypeError if $pdo is not PDO conncetion object
+     */
+    public function delete(\PDO $pdo) {
+        // enforce the profileId is not null (i.e, dont delete a profile that hasn't been inserted)
+        if($this->profileId === null){
+            throw(new \PDOException("unable to delete profile that does not exist"));
+        }
+        // create query template
+        $query = "DELETE FROM profile WHERE profileId = :profileId";
+        $statement = $pdo->prepare($query);
+
+        //bind the member variables to the place holder in the template
+        $parameters = ["profileId" => $this->profileId];
+        $statement->execute($parameters);
+
+    }
 }
