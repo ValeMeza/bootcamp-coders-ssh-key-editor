@@ -208,10 +208,10 @@ class Profile //implements |JsonSerializable
         }
 
         // create a query template
-        $query = "INSERT INTO profile(profileId, profileContent, profileEmail) VALUES( :profileId, :profileContent, :profileEmail)";
+        $query = "INSERT INTO profile(profileId, profileEmail) VALUES( :profileId, :profileEmail)";
         $statement = $pdo->prepare($query);
         // bind the member variables to the place holders in the template
-        $parameters = ["profileId" => $this->profileId, "profileContent" => $this->profileContent, "profileEmail" => $this->profileEmail];
+        $parameters = ["profileId" => $this->profileId, "profileEmail" => $this->profileEmail];
         $statement->execute($parameters);
 
         // update the null profileId with mySQL just gave us
@@ -240,4 +240,26 @@ class Profile //implements |JsonSerializable
         $statement->execute($parameters);
 
     }
+
+    /**
+     * updates this Profile in mySQL
+     *
+     * @param \PDO $pdo PDo onnection object
+     * @throws \PDOException when mySQL related errors occur
+     * @throws \TypeError if $pdo is not a PDO connection object
+     **/
+    public function update(\PDO $pdo) {
+        // enforce the profileId is not null (i.e., don't update a tweet that hasn't been inserted)if
+        if($this->profileId === null) {
+            throw(new \PDOException("unable to update a profile that does not exist"));
+        }
+        // create query template
+        $query = "UPDATE profile SET profileId = :profileId, profileEmail = :profileEmail,";
+        $statement = $pdo->prepare($query);
+
+        // bind the member variables to the place holders in the template
+        $parameters = ["profileId" => $this->ProfileId, "profileEmail" => $this->profileEmail, ];
+        $statement->execute($parameters);
+    }
+
 }
