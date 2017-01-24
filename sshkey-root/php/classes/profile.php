@@ -1,7 +1,7 @@
 <?php
-namespace edu\cnm\vmeza3\bootcamp;
+namespace Edu\cnm\vmeza3\bootcamp;
 
-require_once("profile.php");
+require_once("autoload.php");
 
 /**
  * SSHKEY Class Attempt
@@ -11,9 +11,7 @@ require_once("profile.php");
  * @author Valente Meza <vmeza3@cnm.edu>
  * @version 3.2.0*/
 
-class Profile //implements |JsonSerializable
-    //use ValidateDate;
-{
+class Profile implements \JsonSerializable {
     /**
      * id for this Profile; this is the primary key
      * @var int $profileId ;
@@ -208,7 +206,7 @@ class Profile //implements |JsonSerializable
         }
 
         // create a query template
-        $query = "INSERT INTO profile(profileId, profileEmail) VALUES( :profileId, :profileEmail)";
+        $query = "INSERT INTO profile(ProfileId, ProfileEmail) VALUES(:ProfileId, :ProfileEmail)";
         $statement = $pdo->prepare($query);
         // bind the member variables to the place holders in the template
         $parameters = ["profileId" => $this->profileId, "profileEmail" => $this->profileEmail];
@@ -216,7 +214,6 @@ class Profile //implements |JsonSerializable
 
         // update the null profileId with mySQL just gave us
         $this->profileId = intval($pdo->lastInsertId());
-
     }
 
     /**
@@ -254,12 +251,23 @@ class Profile //implements |JsonSerializable
             throw(new \PDOException("unable to update a profile that does not exist"));
         }
         // create query template
-        $query = "UPDATE profile SET profileId = :profileId, profileEmail = :profileEmail,";
+        $query = "UPDATE profile SET profileId = :profileId, profileEmail = :profileEmail";
         $statement = $pdo->prepare($query);
 
         // bind the member variables to the place holders in the template
-        $parameters = ["profileId" => $this->ProfileId, "profileEmail" => $this->profileEmail, ];
+        $parameters = ["ProfileId" => $this->profileId, "ProfileEmail" => $this->profileEmail, ];
         $statement->execute($parameters);
+    }
+
+    /**
+     * formats the state variables for JSON Serialization
+     *
+     * @return array resulting state variables to serialize
+     **/
+    public function jsonSerialize() {
+        $fields = get_object_vars($this);
+        unset($fields["ProfileHash, ProfileSalt"]);
+        return($fields);
     }
 
 }
