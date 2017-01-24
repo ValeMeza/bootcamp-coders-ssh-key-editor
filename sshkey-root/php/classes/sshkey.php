@@ -64,5 +64,29 @@ class sshkey implements \JsonSerializable {
      * @param string $newSshkeyVersion string containing actual sshkey data
      * @throws \InvalidArgumentException if data types are not valid
      * @throws \RangeException if data values are of bounds (e.g., strings too long, negative integers)
-     */
+     **/
+    public function __construct(int $newSshkeyId = null, int$newSshkeyProfileId, string $newSshkeyAlgorithm, string $newSshkeyBits, string $newSshkeyComment, string $newSshkeyContent, $newSshkeyDate = null, string $newSshkeyFingerprint, string $newSshkeyVersion){
+        try{
+            $this->setSshkeyId($newSshkeyId);
+            $this->setSshkeyProfileId($newSshkeyProfileId);
+            $this->setSshkeyAlgorithm($newSshkeyAlgorithm);
+            $this->setSshkeyBits($newSshkeyBits);
+            $this->setSshkeyComment($newSshkeyComment);
+            $this->setSshkeyContent($newSshkeyContent);
+            $this->setSshkeyDate($newSshkeyDate);
+            $this->setSshkeyFingerprint($newSshkeyFingerprint);
+            $this->setSshkeyVersion($newSshkeyVersion);
+        } catch(\InvalidArgumentException $invalidArgument){
+            // rethrow the eception to the caller
+            throw(new \InvalidArgumentException($invalidArgument->getMessage(),0, $invalidArgument));
+        } catch(\RangeException $range){
+            // rethrow the exception to the caller
+            throw(new \RangeException($range->getMessage(), 0, $range));
+        } catch(\TypeError $typeError){
+            throw(new \TypeError($typeError->getMessage(),0,$typeError));
+        } catch(\Exception $exception){
+            throw(new \Exception($exception->getMessage(), 0, $exception));
+        }
+    }
+    /**
 }
