@@ -89,4 +89,51 @@ class sshkey implements \JsonSerializable {
         }
     }
     /**
+     * accessor method for sshkey id
+     *
+     * @return int|null value of sshkey id
+     **/
+    public function setSshkeyId(int $newSshkeyId = null) {
+        // base case: if the sshkey id is null, this is a new sshkey without a mySQL assigned id (yet)
+        if($newSshkeyId === null){
+            $this->sshkeyid = null;
+            return;
+        }
+
+        // verify the tweet id is positive
+        if($newSshkeyId <= 0 ){
+            throw(new \RangeException("sshkey id is not positive"));
+        }
+
+        //convert and store the sshkey id
+        $this->sshkeyId = $newSshkeyId;
+    }
+    /**
+     * accessor method for sshkey profile id
+     *
+     * @return int value of sshkey profile id
+     **/
+    public function getSshkeyProfileId(){
+        return($this->sshkeyProfileId);
+    }
+    /**
+     * mutator method for sshkey profile id
+     *
+     * @param int $newSshkeyProfileId
+     * @throws \RangeException if $newProfileId is not positive
+     * @throws \TypeError if $newSshkeyProfileId is not an integer
+     **/
+    public function setSshkeyProfileId(int $newSshkeyProfileId){
+        // verify the profile id is positive
+        if($newSshkeyProfileId <=0){
+            throw(new \RangeException("sshkey profile id is not positive"));
+        }
+        // convert and store the profile id
+        $this->sshkeyProfileId = $newSshkeyProfileId;
+    }
+    /**
+     * accessor method for sshkey content
+     *
+     * @return string value of Algorithm
+     */
 }
