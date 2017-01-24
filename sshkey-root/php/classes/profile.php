@@ -1,5 +1,5 @@
 <?php
-namespace Edu\cnm\vmeza3\bootcamp;
+namespace Edu\cnm\vmeza3\DataDesign;
 
 require_once("autoload.php");
 

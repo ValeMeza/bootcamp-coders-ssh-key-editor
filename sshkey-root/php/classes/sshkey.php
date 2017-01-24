@@ -1,5 +1,7 @@
 <?php
-namespace Edu\cnm\vmeza3\bootcamp;
+namespace Edu\cnm\vmeza3\DataDesign;
+
+use Edu\Cnm\Dmcdonald21\DataDesign\ValidateDate;
 
 require_once ("autoload.php");
 
@@ -12,6 +14,8 @@ require_once ("autoload.php");
  * @version 3.2.0 */
 
 class sshkey implements \JsonSerializable {
+    use ValidateDate
+
     /**
      * id for this Profile; this is the primary key
      *@var int $sshekyId
@@ -146,7 +150,7 @@ class sshkey implements \JsonSerializable {
      * @param string $newSshkeyAlgorithm
      * @throws \InvalidArgumentException if $newSshkeyAlgorithm is not a string or insecure
      * @throws \TypeError if $SshkeyAlgorithm is not a string
-     * @throws \RangeException if $newSshkeyAlgorithm is to long
+     * @throws \RangeException if $newSshkeyAlgorithm is to long > 54
      **/
     public function setSshkeyAlgorithm(string $newSshkeyAlgorithm){
         //** verify the Algorithm is secure */
@@ -174,7 +178,7 @@ class sshkey implements \JsonSerializable {
      * @param string $newSshkeyBits
      * @throws \InvalidArgumentException if
      * @throws \TypeError if $SshkeyBits is not a string
-     * @throws \RangeException if $newSshkeyBits is to long
+     * @throws \RangeException if $newSshkeyBits is to long > 4
      **/
         public function setSshkeyBits(string $newSshkeyBits){
             //** verify the bits are secure
@@ -189,5 +193,35 @@ class sshkey implements \JsonSerializable {
             }
             //** store the bits content */
             $this->sshkeyBits = $newSshkeyBits;
+    }
+    /**
+     * accessor method for sshkey comment
+     *
+     * @return string value of sshkey comment
+     **/
+    public function getSshkeyComment(){
+        return($this->sshkeyContent);
+    }
+    /**
+     * mutator method for sshkey comment
+     *
+     * @param string $newSshkeyComment
+     * @throws \InvalidArgumentException if $newSshkeyComment new value of sshkey comment
+     * @throws \RangeException if $newSshkeyComment is insecure > 22 characters
+     * @throws \TypeError if $newSshkeyComment is not a string
+     **/
+    public function setSshkeyComment(string $newSshkeyComment){
+        // verify the sshkey comment is secure
+        $newSshkeyComment = trim($newSshkeyComment);
+        $newSshkeyComment = filter_var($newSshkeyComment,FILTER_SANITIZE_STRING);
+        if(empty($newSshkeyComment) === true){
+            throw(new\InvalidArgumentException("comment is empty or insecure"));
+        }
+        // verify the sshkey content will fit in the database
+        if(strlen($newSshkeyComment) > 22){
+            throw(new \RangeException("comment too large"));
+        }
+        //store sshkey comment
+        $this->sshkeyComment = $newSshkeyComment;
     }
 }
