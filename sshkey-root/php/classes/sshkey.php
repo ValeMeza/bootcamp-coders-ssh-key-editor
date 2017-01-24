@@ -162,4 +162,32 @@ class sshkey implements \JsonSerializable {
         $this->sshkeyAlgorithm = $newSshkeyAlgorithm;
     }
     /**
+     * accessor method for Bits
+     * @return string value of Bits content
+     **/
+    public function getSshkeyBits()
+    {
+        return ($this->sshkeyBits);
+    }
+    /**
+     * mutator method for Bits content
+     * @param string $newSshkeyBits
+     * @throws \InvalidArgumentException if
+     * @throws \TypeError if $SshkeyBits is not a string
+     * @throws \RangeException if $newSshkeyBits is to long
+     **/
+        public function setSshkeyBits(string $newSshkeyBits){
+            //** verify the bits are secure
+            $newSshkeyBits = filter_var($newSshkeyBits, FILTER_DEFAULT);
+            if (empty($newSshkeyBits) === true){
+                throw(new \InvalidArgumentException("bit content is empty or insecure"));
+
+        }
+        //** verify the bits content will fit in the data base
+            if (strlen($newSshkeyBits) > 4){
+                throw(new \RangeException("bits to long"));
+            }
+            //** store the bits content */
+            $this->sshkeyBits = $newSshkeyBits;
+    }
 }
