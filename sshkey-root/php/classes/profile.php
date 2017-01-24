@@ -4,7 +4,7 @@ namespace Edu\cnm\vmeza3\bootcamp;
 require_once("autoload.php");
 
 /**
- * SSHKEY Class Attempt
+ * Profile Class Attempt
 
     This will be my first attempt at a class for SSHKEY Editor Example using the Profile class.
 
