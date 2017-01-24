@@ -50,4 +50,19 @@ class sshkey implements \JsonSerializable {
      * version of the sshkey
      **/
     private $sshkeyVersion;
+    /**
+     * constructor for this sshkey
+     *
+     * @param int|null $newSshkeyId id of this sshkey or null if new sshkey
+     *@param int $newSshkeyProfileId id of the Profile that posted the sshkey
+     *@param string $newSshkeyAlgorithm string containing actual sshkey data
+     *@param string $newSshkeyBits string containing actual sshkey data
+     * @param string $newSshkeyComment string containing actual sshkey data
+     * @param string $newSshkeyContent string containing content of the sshkey data
+     * @param \DateTime|string|null $newSshkeyDate date and time sshkey was sent or null if set to urrent date and time
+     * @param string $newSshkeyFingerprint string containing actual sshkey data
+     * @param string $newSshkeyVersion string containing actual sshkey data
+     * @throws \InvalidArgumentException if data types are not valid
+     * @throws \RangeException if data values are of bounds (e.g., strings too long, negative integers)
+     */
 }
