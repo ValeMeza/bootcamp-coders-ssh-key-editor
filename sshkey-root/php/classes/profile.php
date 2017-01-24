@@ -190,7 +190,7 @@ class Profile implements \JsonSerializable {
             throw(new\RangeException("Salt is to large"));
         }
         //** store Salt content **/
-        $this->ProfileSalt = $newProfileSalt;
+        $this->profileSalt = $newProfileSalt;
     }
     /**
      * inserts this profile into mySQL
