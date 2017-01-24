@@ -136,4 +136,30 @@ class sshkey implements \JsonSerializable {
      *
      * @return string value of Algorithm
      */
+    public function getSshkeyAlgorithm()
+    {
+        return ($this->sshkeyAlgorithm);
+    }
+
+    /**
+     * mutator method for Algorithm content
+     * @param string $newSshkeyAlgorithm
+     * @throws \InvalidArgumentException if $newSshkeyAlgorithm is not a string or insecure
+     * @throws \TypeError if $SshkeyAlgorithm is not a string
+     * @throws \RangeException if $newSshkeyAlgorithm is to long
+     **/
+    public function setSshkeyAlgorithm(string $newSshkeyAlgorithm){
+        //** verify the Algorithm is secure */
+        $newSshkeyAlgorithm = filter_var($newSshkeyAlgorithm, FILTER_SANITIZE_NUMBER_FLOAT);
+        if (empty($newSshkeyAlgorithm) === true){
+            throw(new \InvalidArgumentException(("Algorithm content is emty or insecure")));
+        }
+        //** verify Algorithm will fit in database */
+        if(strlen($newSshkeyAlgorithm) > 54){
+            throw(new \RangeException("Algorithm to long"));
+        }
+        /**store the Algorith content**/
+        $this->sshkeyAlgorithm = $newSshkeyAlgorithm;
+    }
+    /**
 }

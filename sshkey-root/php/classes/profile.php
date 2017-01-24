@@ -126,7 +126,7 @@ class Profile implements \JsonSerializable {
         if (strlen($newProfileEmail) > 128) {
             throw(new \RangeException("email to long"));
         }
-        //**store the email content**/vmeza3@localhost
+        //**store the email content**/
         $this->profileEmail = $newProfileEmail;
 
     }
