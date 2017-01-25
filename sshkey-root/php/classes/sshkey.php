@@ -14,7 +14,7 @@ require_once ("autoload.php");
  * @version 3.2.0 */
 
 class sshkey implements \JsonSerializable {
-    use ValidateDate
+    use ValidateDate;
 
     /**
      * id for this Profile; this is the primary key
